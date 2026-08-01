@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Downloading Document...</title>
+</head>
+<body>
+    <h2 style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+        Your PDF download is starting automatically...
+    </h2>
+
+    <script>
+        // Extract the batchNo parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const batchNo = urlParams.get('batchNo');
+
+        if (batchNo) {
+            // Path to your PDF file
+            const pdfUrl = `../../../pdfs/${batchNo}.pdf`;
+
+            // Force automatic download
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = `Rajpatra_Batch_${batchNo}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            document.body.innerHTML = "<h3>Error: No Batch Number provided.</h3>";
+        }
+    </script>
+</body>
+</html>
+
